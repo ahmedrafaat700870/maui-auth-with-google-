@@ -1,0 +1,29 @@
+﻿@page "/"
+@using MauiApp1.Services
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<button @onclick="Login">
+    click me
+</button>
+
+
+<p>
+    @message
+</p>
+@code {
+    private string message;
+    private async void Login()
+    {
+        LoginAuth login = new LoginAuth();
+        try
+        {
+            this.message = await login.AuthWithGoogle();
+        } catch(Exception ex)
+        {
+            this.message = ex.Message;
+        }
+    }
+}
